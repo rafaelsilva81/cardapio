@@ -2,7 +2,7 @@ import Head from 'next/head';
 import api from '../lib/axios';
 import Image from 'next/image';
 
-import logoAlt from './assets/logo-alt.png';
+import logoAlt from '../assets/logo-alt.png';
 
 export default function Home({ data }: { data: Item[] }) {
   // Separar os itens por categoria
