@@ -3,6 +3,7 @@ import api from '../lib/axios';
 import Image from 'next/image';
 
 import logoAlt from '../assets/logo-alt.png';
+import prisma from '../lib/db';
 
 export default function Home({ data }: { data: Item[] }) {
   // Separar os itens por categoria
@@ -75,11 +76,10 @@ export default function Home({ data }: { data: Item[] }) {
 }
 
 export const getStaticProps = async () => {
-  const res = await api.get('/api/items');
+  const items = await prisma.item.findMany({});
 
-  const data = res.data as Item[];
-
-  console.log(data);
+  // to json
+  const data = JSON.parse(JSON.stringify(items));
 
   return {
     props: {
